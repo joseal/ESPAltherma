@@ -1,11 +1,11 @@
 //Setup your credentials and mqtt info here:
 //only change the value between the " " leave the rest of the line untouched.
-#define WIFI_SSID "SSID"//**Your SSID here**
-#define WIFI_PWD "password"//**Your password here** leave empty if open (bad!)
+#define WIFI_SSID "Alves-Net"//**Your SSID here**
+#define WIFI_PWD "melancia"//**Your password here** leave empty if open (bad!)
 
-#define MQTT_SERVER "192.168.1.4"//**IP address here of your MQTT server**
-#define MQTT_USERNAME ""//leave empty if not set (bad!)
-#define MQTT_PASSWORD ""//leave empty if not set (bad!)
+#define MQTT_SERVER "192.168.10.107"//**IP address here of your MQTT server**
+#define MQTT_USERNAME "mqttuser"//leave empty if not set (bad!)
+#define MQTT_PASSWORD "thithin"//leave empty if not set (bad!)
 #define MQTT_PORT 1883
 
 #define FREQUENCY 30000 //query values every 30 sec
@@ -68,7 +68,7 @@
 //#include "def/ALTHERMA(MONOBLOC_CA_05-07KW).h"
 //#include "def/ALTHERMA(TOP-GRADE).h"
 //#include "def/DAIKIN_MINI_INVERTER_CHILLER04-08KW.h"
-//#include "def/DEFAULT.h"
+#include "def/DEFAULT.h"
 
 #ifndef LABELDEF
 #warning "NO DEFINITION SELECTED: Please select your heat pump definition in /src/setup.h -- Using default."

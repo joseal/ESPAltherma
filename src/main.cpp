@@ -94,7 +94,7 @@ void setup_wifi()
 {
   delay(10);
   // We start by connecting to a WiFi network
-  mqttSerial.printf("Connecting to %s\n", WIFI_SSID);
+  mqttSerial.printf("Connecting to %s", WIFI_SSID);
   WiFi.begin(WIFI_SSID, WIFI_PWD);
   int i = 0;
   while (WiFi.status() != WL_CONNECTED)
@@ -106,7 +106,7 @@ void setup_wifi()
       esp_restart();
     }
   }
-  mqttSerial.printf("Connected. IP Address: %s\n", WiFi.localIP().toString().c_str());
+  mqttSerial.printf("Connected! \nIP Address: %s\n", WiFi.localIP().toString().c_str());
 }
 
 void initRegistries(){
@@ -159,7 +159,7 @@ void setup()
 {
   Serial.begin(115200);
   setupScreen();
-  MySerial.begin(9600, SERIAL_8E1, RX_PIN, TX_PIN);
+  MySerial.begin(9600,SERIAL_8E1, RX_PIN, TX_PIN);
   pinMode(PIN_THERM, OUTPUT);
   digitalWrite(PIN_THERM, HIGH);
 
@@ -177,7 +177,7 @@ void setup()
 
   EEPROM.begin(10);
   readEEPROM();//Restore previous state
-  mqttSerial.print("Setting up wifi...");
+  mqttSerial.println("Setting up wifi...");
   setup_wifi();
   ArduinoOTA.setHostname("ESPAltherma");
   ArduinoOTA.onStart([]() {
@@ -194,13 +194,14 @@ void setup()
   client.setBufferSize(MAX_MSG_SIZE); //to support large json message
   client.setCallback(callback);
   client.setServer(MQTT_SERVER, MQTT_PORT);
-  mqttSerial.print("Connecting to MQTT server...");
+  mqttSerial.println("Connecting to MQTT server...");
   mqttSerial.begin(&client, "espaltherma/log");
   reconnect();
-  mqttSerial.println("OK!");
 
+  mqttSerial.println("Getting the list of registries to query...");
   initRegistries();
-  mqttSerial.print("ESPAltherma started!");
+  
+  mqttSerial.println("ESPAltherma started!");
 }
 
 void waitLoop(uint ms){
